@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+    <h2>Open Dota API</h2>
+    
+    <table style="width:40%">
+        <tr>
+            <th></th>
+            <th>Radiant</th>
+
+            <th  style="width:40%">Dire</th>
+        </tr>
+        <tr>
+            <td>Winner:</td>
+            {% if radiant_win == True %}
+            <td>Victory</td>
+            <td></td>
+            {%else%}
+            <td></td>
+            <td>Victory</td>
+            {%endif%}
+        </tr>
+        <tr>
+            <td>Score:</td>
+            <td>{{response.radiant_score}}</td>
+
+            <td>{{response.dire_score}}</td>
+        </tr>
+    </table>
+
+
+    </table>
+    <table style="width:40%">
+        <tr>
+            <td style="text-align: center;">Duration: {{response.duration}}</td>
+            <!-- <td style="width:40%">{{response.duration}}</td> -->
+        </tr>
+    </table>
+    <hr>
+    <h4 >Heroes Picked</h4>
+    <table style="width:60%; ">
+        <tr>
+                <th style="width:30%">Radiant</th>
+                <!-- <th  style="width:5%"></th> -->
+                <th style="width:30%">Dire</th>
+        </tr>    
+    </table>
+    <table style="width:60%">
+        <tr>
+            {% for i in response.picks_bans%}
+                {% if i.is_pick == True and i.team == 0 %}
+                <td style="width:6%"> {{i.hero_id}}</td>
+                {%endif%}     
+            {%endfor%}
+
+<!--  -->
+
+            {% for i in response.picks_bans%}
+                {% if i.is_pick == True and i.team == 1 %}
+                <td style="width:6%"> {{i.hero_id}}</td>
+                {%endif%}     
+            {%endfor%}
+        </tr>    
+    </table>
+
+    <br>
+    <!-- <p>{{response.players}}</p> -->
+</body>
+</html>
+
+
+
+ 
